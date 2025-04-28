@@ -1,18 +1,17 @@
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Home } from "./pages/Home";
-import {Navbar} from "./components/Navbar";
+import { Navbar } from "./components/Navbar";
 import { createContext, useState, useEffect } from "react";
-import {Cart} from "./pages/Cart";
+import { Cart } from "./pages/Cart";
 import axios from "axios";
 
-export const CartContext = createContext()
+export const CartContext = createContext();
 
 function App() {
   const [meals, setMeals] = useState([]);
-  const [cartList, setCartList] = useState([]); 
+  const [cartList, setCartList] = useState([]);
 
-  
   const toggleCartItem = (id) => {
     setCartList((prevList) =>
       prevList.includes(id)
@@ -29,12 +28,13 @@ function App() {
 
   return (
     <div>
-      <CartContext.Provider value={{ meals, setMeals, cartList, toggleCartItem }}>
-
+      <CartContext.Provider
+        value={{ meals, setMeals, cartList, toggleCartItem }}
+      >
         <Router>
           <Navbar />
           <Routes>
-            <Route element={<Home />} path="/Sea-Food-Orders" />
+            <Route element={<Home />} path="/" />
             <Route element={<Cart />} path="/cart" />
           </Routes>
           <footer>
@@ -42,7 +42,6 @@ function App() {
             prohibited.
           </footer>
         </Router>
-        
       </CartContext.Provider>
     </div>
   );
