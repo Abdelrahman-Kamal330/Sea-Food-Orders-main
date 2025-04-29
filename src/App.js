@@ -12,7 +12,7 @@ function App() {
   const [meals, setMeals] = useState([]);
   const [cartList, setCartList] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(""); 
+  const [error, setError] = useState("");
 
   const toggleCartItem = (id) => {
     setCartList((prevList) =>
@@ -30,12 +30,11 @@ function App() {
         setLoading(false);
       })
       .catch((err) => {
-        console.error('Error fetching seafood meals:', err);
-        setError(err.message || 'An unexpected error occurred.');
+        console.error("Error fetching seafood meals:", err);
+        setError(err.message || "An unexpected error occurred.");
         setLoading(false);
       });
   }, []);
-
 
   if (loading) {
     return <p>Loading meals...</p>;
@@ -67,4 +66,3 @@ function App() {
 }
 
 export default App;
-
