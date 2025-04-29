@@ -53,7 +53,7 @@ function App() {
         <Router>
           <Navbar />
           <Routes>
-            <Route element={<Home />} path="/Sea-Food-Orders" />
+            <Route element={<Home />} path="/" />
             <Route element={<Cart />} path="/cart" />
           </Routes>
           <footer>
