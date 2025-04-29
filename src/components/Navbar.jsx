@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export const Navbar = () => {
   return (
     <div className="navbar d-flex justify-content-between ps-5 pe-5 align-items-center sticky-top">
-      <Link to="/Sea-Food-Orders">
+      <Link to="/">
         <img
           width={50}
           height={50}
@@ -15,7 +15,10 @@ export const Navbar = () => {
       </Link>
 
       <ul className="d-flex gap-3">
-        <Link style={{ textDecoration: "none", color: "white" }} to="/Sea-Food-Orders">
+        <Link
+          style={{ textDecoration: "none", color: "white" }}
+          to="/Sea-Food-Orders"
+        >
           Home
         </Link>
         <Link style={{ textDecoration: "none", color: "white" }} to="/cart">
