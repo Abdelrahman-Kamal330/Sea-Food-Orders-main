@@ -11,6 +11,8 @@ export const CartContext = createContext();
 function App() {
   const [meals, setMeals] = useState([]);
   const [cartList, setCartList] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(""); 
 
   const toggleCartItem = (id) => {
     setCartList((prevList) =>
@@ -23,8 +25,25 @@ function App() {
   useEffect(() => {
     axios
       .get("https://www.themealdb.com/api/json/v1/1/filter.php?c=Seafood")
-      .then((res) => setMeals(res.data.meals));
-  });
+      .then((res) => {
+        setMeals(res.data.meals || []);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error('Error fetching seafood meals:', err);
+        setError(err.message || 'An unexpected error occurred.');
+        setLoading(false);
+      });
+  }, []);
+
+
+  if (loading) {
+    return <p>Loading meals...</p>;
+  }
+
+  if (error) {
+    return <p style={{ color: "red" }}>Error: {error}</p>;
+  }
 
   return (
     <div>
@@ -34,7 +53,7 @@ function App() {
         <Router>
           <Navbar />
           <Routes>
-            <Route element={<Home />} path="/" />
+            <Route element={<Home />} path="/Sea-Food-Orders" />
             <Route element={<Cart />} path="/cart" />
           </Routes>
           <footer>
@@ -48,3 +67,4 @@ function App() {
 }
 
 export default App;
+
